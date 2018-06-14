@@ -53,4 +53,11 @@ public class UserInfo {
     public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
+    
+    @Override
+    public String toString() {
+        return "UserInfo [id=" + id + ", name=" + name + ", password=" + password + ", nike=" + nike + ", roleId=" + roleId + "]";
+    }
+    
+    
 }
