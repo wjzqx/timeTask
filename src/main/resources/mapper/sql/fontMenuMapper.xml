@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.vrv.dao.FontMenuMapper">  
+
+	<resultMap type="FontMenuDomain" id="FontMenuResult">
+		<id property="id" column="id"/>
+		<result property="pathName" column="pathName" />
+		<result property="classIcon" column="classIcon" />
+		<result property="zhName" column="zhName" />
+		<result property="enName" column="enName" />
+		<result property="status" column="status" />
+	</resultMap>
+	
+	<sql id="column_name_sql">
+		id, pathName, classIcon, zhName, enName, status
+	</sql>
+   
+   <select id="findAllFontMenu" resultType="FontMenuResult">  
+   	select <include refid="column_name_sql"/> from fontMenu;
+   </select>
+  <select id="findFontMenuByParam" resultType="FontMenuResult" parameterType="com.vrv.vo.FontMenu">  
+    select <include refid="column_name_sql"/> from fontMenu
+    <where>
+    	<if test="id!=0">
+    	   and id=#{id,jdbcType=INTEGER}
+    	</if>
+    	<if test="pathName!=null and pathName!=''">
+			and pathName=#{pathName},
+		</if>
+		<if test="classIcon!=null and classIcon!=''">
+			and classIcon=#{classIcon},
+		</if>
+		<if test="zhName!=null and zhName!=''">
+			and zhName=#{zhName},
+		</if>
+		<if test="status!=0">
+			and status=#{status},
+		</if>
+		<if test="enName!=null and enName!=''">
+			and enName=#{enName},
+		</if>
+    </where>
+  </select>
+
+    
+  <insert id="addFontMenu" parameterType="FontMenuResult">  
+    insert into fontMenu (pathName,classIcon,zhName,enName, status)  
+    values (
+        #{pathName,jdbcType=VARCHAR},
+        #{classIcon,jdbcType=VARCHAR},
+        #{zhName,jdbcType=VARCHAR},
+        #{enName,jdbcType=VARCHAR},
+        #{status, jdbcType=INTEGER}
+      )  
+  </insert>  
+  <delete id="delFontMenu" parameterType="java.lang.Integer">  
+   	delete from fontMenu where id = #{id,jdbcType=INTEGER}  
+  </delete>  
+  
+	<update id="updateFontMenu" parameterType="FontMenuDomain">
+		update fontMenu
+		<trim prefix="set" suffixOverrides=",">
+			<if test="pathName!=null and pathName!=''">
+				pathName=#{pathName},
+			</if>
+			<if test="classIcon!=null and classIcon!=''">
+				classIcon=#{classIcon},
+			</if>
+			<if test="zhName!=null and zhName!=''">
+				zhName=#{zhName},
+			</if>
+			<if test="status!=0">
+				status=#{status},
+			</if>
+			<if test="enName!=null and enName!=''">
+				enName=#{enName},
+			</if>
+		</trim>
+		where id=#{id}
+	</update>
+   
+</mapper> 

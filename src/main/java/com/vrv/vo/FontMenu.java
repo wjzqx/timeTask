@@ -16,6 +16,8 @@ public class FontMenu {
     private String zhName;
     // 菜单名称(英文)
     private String enName;
+    // 状态 0：停用，1：启用
+    private int status;
     
     public int getId() {
         return id;
@@ -47,12 +49,16 @@ public class FontMenu {
     public void setEnName(String enName) {
         this.enName = enName;
     }
+    
+    public int getStatus() {
+        return status;
+    }
+    public void setStatus(int status) {
+        this.status = status;
+    }
     @Override
     public String toString() {
-        return "FontMenu [id=" + id + ", pathName=" + pathName + ", classIcon=" + classIcon + ", zhName=" + zhName + ", enName=" + enName + "]";
+        return "FontMenu [id=" + id + ", pathName=" + pathName + ", classIcon=" + classIcon + ", zhName=" + zhName + ", enName=" + enName + ", status=" + status + "]";
     }
-    
-    
-    
 
 }
