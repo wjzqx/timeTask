@@ -39,5 +39,11 @@ public class HelloController {
         status.setResContent(user);
         return status;
     }
+    
+    @RequestMapping("test")
+    public String vaildUrl(){
+        System.out.println("123123-------------->");
+        return "{msg:true}";
+    }
 
 }

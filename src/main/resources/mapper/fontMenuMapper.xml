@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.vrv.dao.FontMenuMapper">  
+
+	<resultMap type="FontMenu" id="FontMenuResult">
+		<id property="id" column="id"/>
+		<result property="pathName" column="pathName" />
+		<result property="classIcon" column="classIcon" />
+		<result property="zhName" column="zhName" />
+		<result property="enName" column="enName" />
+	</resultMap>
+	
+	<sql id="column_name_sql">
+		id, pathName, classIcon, zhName, enName
+	</sql>
+   
+  <select id="findFontMenu" resultType="FontMenuResult">  
+    select <include refid="column_name_sql"/> from fontMenu;  
+  </select>  
+  <insert id="addFontMenu" parameterType="com.vrv.vo.FontMenu">  
+    insert into fontMenu (pathName,classIcon,zhName,enName  
+      )  
+    values (
+        #{pathName,jdbcType=VARCHAR},
+        #{classIcon,jdbcType=VARCHAR},
+        #{zhName,jdbcType=VARCHAR},
+        #{enName,jdbcType=INTEGER},
+      )  
+  </insert>  
+  <delete id="delFontMenu" parameterType="java.lang.Integer">  
+   	delete from fontMenu where id = #{id,jdbcType=INTEGER}  
+  </delete>  
+  
+  
+	<update id="updateFontMenu" parameterType="FontMenuResult">
+		update fontMenu
+		<trim prefix="set" suffixOverrides=",">
+			<if test="pathName!=null and pathName!=''">
+				pathName=#{pathName},
+			</if>
+			<if test="classIcon!=null and classIcon!=''">
+				classIcon=#{classIcon},
+			</if>
+			<if test="zhName!=null and zhName!=''">
+				zhName=#{zhName},
+			</if>
+			<if test="enName!=null and enName!=''">
+				enName=#{enName},
+			</if>
+		</trim>
+		where id=#{id}
+	</update>
+   
+</mapper> 

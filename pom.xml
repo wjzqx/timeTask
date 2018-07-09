@@ -52,16 +52,24 @@
 	  <!-- fastjson包 end -->
 	  
 	  <!-- MQ依赖包 start -->
-	  <dependency>  
+	<!--   <dependency>  
          <groupId>org.springframework.boot</groupId>  
          <artifactId>spring-boot-starter-activemq</artifactId>  
       </dependency>
       <dependency>  
          <groupId>org.apache.activemq</groupId>  
          <artifactId>activemq-pool</artifactId>  
-         <!-- <version>5.7.0</version> -->  
-      </dependency> 
+         <version>5.7.0</version>  
+      </dependency>  -->
 	  <!-- MQ依赖包 end -->
+	  
+	 
+	 <!--  <dependency>
+	    <groupId>org.springframework.kafka</groupId>
+	    <artifactId>spring-kafka</artifactId>
+	    <version>1.2.2.RELEASE</version>
+	 </dependency> -->
+	
   </dependencies>
   <build>
       <plugins>
